@@ -1,0 +1,52 @@
+<div class="oj-panel">
+    <oj-bind-if test="[[controls]]">
+        <div style="margin-bottom:25px">
+          <oj-button on-oj-action="{{saveControls}}">Save</oj-button>
+        </div>
+      <oj-bind-for-each data="[[controls]]">
+        <template>
+          <div class="oj-panel myInputs" data-bind="attr:{id:[[$current.data.key]]}">
+  
+            <!-- SETUP REMOVE WRAPPER -->
+            <oj-button  data-bind="attr:{id:[[$current.data.key]]+'_remove'}" on-oj-action="{{remove}}" class="oj-panel-remove-button demo-button" chroming="half" display="icons">
+              <span slot="startIcon" class="oj-panel-remove-icon"></span>
+              <span>remove</span>
+            </oj-button>
+  
+            <!-- FOR TEXT INPUTS -->
+            <oj-bind-if test="[[$current.data.type]] == 'txt'">
+              <oj-label data-bind="attr: {id: [[$current.data.key]]+'_label'}">
+                <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+              </oj-label>
+              <oj-input-text data-bind="attr:{id: [[$current.data.key]]+'_input'}"></oj-input-text>
+             
+            </oj-bind-if>
+  
+            <!-- FOR CHECKBOX INPUTS -->
+            <oj-bind-if test="[[$current.data.type]] == 'chk'">
+              <oj-label data-bind="attr: {id: [[$current.data.key]]+'_label'}" class="oj-label-inline">
+                <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+              </oj-label>
+              <oj-checkboxset labelled-by="[[$current.data.key]]+'_label'" data-bind="attr:{id: [[$current.data.key]]+'_input'}">
+                <oj-option value="on"></oj-option>
+              </oj-checkboxset>
+           
+            </oj-bind-if>
+  
+            <!-- FOR RADIO INPUTS -->
+            <oj-bind-if test="[[$current.data.type]] == 'rad'">
+              <p>Radio Buttons Not Implemented</p>
+            </oj-bind-if>
+            <!-- FOR COMBO SELECTS -->
+            <oj-bind-if test="[[$current.data.type]] == 'SEL'">
+                <p>Select Boxs Not Implemented</p>
+            </oj-bind-if>
+  
+            
+          </div>
+        </template>
+      </oj-bind-for-each>
+  
+    </oj-bind-if>
+  </div>
+  

@@ -1,0 +1,27 @@
+{
+    "name": "filter-table",
+    "displayName": "account-graph",
+    "description": "Describe your component here",
+    "version": "2.0.0",
+    "jetVersion": "5.0",
+    "properties": {
+        "data": {
+            "type": "observable"
+        },
+        "idAttribute":{
+            "type": "string"
+        },
+        "header": {
+            "type": "array"
+        }
+    },
+    "methods": {
+
+    },
+    "events": {
+
+    },
+    "slots": {
+
+    }
+}

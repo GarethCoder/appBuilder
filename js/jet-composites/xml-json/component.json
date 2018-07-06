@@ -1,0 +1,21 @@
+{
+  "name": "xml-json",
+  "displayName": "xml-json",
+  "description": "Take XML to make JSON",
+  "version": "1.0.0",
+  "jetVersion": "5.0.0",
+  "properties": {
+    "callback":{
+      "type":"function"
+    }
+  },
+  "methods": {
+
+  }, 
+  "events": {
+
+  }, 
+  "slots": {
+
+  }
+}

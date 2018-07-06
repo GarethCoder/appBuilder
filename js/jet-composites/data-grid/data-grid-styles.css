@@ -1,0 +1,8 @@
+data-grid:not(.oj-complete){
+  visibility: hidden;
+}
+
+data-grid{
+	min-height: 50px;
+	width: 50px;
+}

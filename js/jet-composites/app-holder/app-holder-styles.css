@@ -1,0 +1,9 @@
+app-holder:not(.oj-complete){
+  visibility: hidden;
+}
+
+app-holder{
+	min-height: 50px;
+	width: 50px;
+	padding:15px
+}

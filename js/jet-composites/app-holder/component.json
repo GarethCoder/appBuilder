@@ -1,0 +1,21 @@
+{
+  "name": "app-holder",
+  "displayName": "app-holder",
+  "description": "Renders an E1 app from a config JSON",
+  "version": "1.0.0",
+  "jetVersion": "5.0.0",
+  "properties": {
+    "config":{
+      "type":"observable"
+    }
+  },
+  "methods": {
+
+  }, 
+  "events": {
+
+  }, 
+  "slots": {
+
+  }
+}

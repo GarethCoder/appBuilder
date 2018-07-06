@@ -1,0 +1,34 @@
+account-graph:not(.oj-complete) {
+    visibility: hidden;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+}
+
+#title h1 {
+    font-family: Charcoal, sans-serif;
+    font-size: 23px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+
+tbody::-webkit-scrollbar {
+    width: 10px;
+}
+
+tbody::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}

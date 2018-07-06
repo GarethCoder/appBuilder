@@ -1,0 +1,16 @@
+xml-json:not(.oj-complete){
+  visibility: hidden;
+}
+
+xml-json{
+	min-height: 50px;
+
+  
+}
+
+#drop_zone {
+  border: 1px solid black;
+
+  height: 100px;
+  padding: 5px
+}

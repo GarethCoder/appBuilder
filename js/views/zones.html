@@ -1,0 +1,108 @@
+<div class="oj-panel">
+    <h4><oj-bind-text value="{{zoneName}}"></oj-bind-text></h4>
+    <hr>
+        <oj-bind-if test="[[selectedZone() == 'default']]">
+                <div class="oj-flex">
+                  <div class="oj-flex-item oj-lg-4">
+                    <div id="ah1"    class="dropper "  >
+                       
+                     <app-holder id="ah1" config="[[currentLoadedApp1]]"></app-holder>
+        
+                    </div>
+
+                    <div id="ah4" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"   >
+
+                       <app-holder  config="[[currentLoadedApp4]]"></app-holder>
+                    </div>
+                  </div>
+                  <div class="oj-flex-item oj-lg-4">
+                     <div  id="ah2"    class="dropper"   >
+                     <app-holder config="[[currentLoadedApp2]]"></app-holder>
+                  </div>
+                  <div  id="ah5" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"   >
+
+                     <app-holder config="[[currentLoadedApp5]]"></app-holder>
+        
+                  </div>
+                 </div>
+                  <div class="oj-flex-item oj-lg-4">
+                     <div  id="ah3"    class="dropper"  >
+                     <app-holder config="[[currentLoadedApp3]]"></app-holder>
+                  </div>
+
+                  <div id="ah6" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3"  class="dropper"  >
+
+                     <app-holder config="[[currentLoadedApp6]]"></app-holder>
+        
+                  </div>
+                 </div>
+                </div>
+               </oj-bind-if>
+                     
+               <oj-bind-if test="[[selectedZone() == 'mobile']]">
+                   <div class="oj-flex">
+                     <div class="oj-flex-item oj-lg-12">
+                       <div id="ah1"    class="dropper "  >
+                          
+                        <app-holder id="ah1" config="{{currentLoadedApp1}}"></app-holder>
+          
+                       </div>
+
+                       <div id="ah2" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"   >
+                          <app-holder  config="{{currentLoadedApp2}}"></app-holder>
+                       </div>
+                       <div id="ah3" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"   >
+                           <app-holder  config="{{currentLoadedApp3}}"></app-holder>
+                        </div>
+                        <div id="ah4" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"   >
+
+                           <app-holder  config="{{currentLoadedApp4}}"></app-holder>
+                        </div>
+        
+                     </div>
+        
+        
+                   </div>
+                  </oj-bind-if>
+                 
+                  <oj-bind-if test="[[selectedZone() == 'dash']]">
+                     <div class="oj-flex">
+                       <div class="oj-flex-item oj-lg-12">
+                         <div id="ah1"    class="dropper">
+                            
+                          <app-holder id="ah1" config="{{currentLoadedApp1}}"></app-holder>
+            
+                         </div>
+                         
+                       </div>
+                       </div>
+                       <div class="oj-flex">
+                       <div class="oj-flex-item oj-lg-4">
+                          <div  id="ah2"    class="dropper"   >
+                          <app-holder config="{{currentLoadedApp2}}"></app-holder>
+                       </div>
+                      </div>
+                       <div class="oj-flex-item oj-lg-4">
+                          <div  id="ah3"    class="dropper"  >
+                          <app-holder config="{{currentLoadedApp3}}"></app-holder>
+                       </div>
+        
+                      </div>
+                      <div class="oj-flex-item oj-lg-4">
+                         <div  id="ah4"    class="dropper"  >
+                         <app-holder config="{{currentLoadedApp4}}"></app-holder>
+                      </div>
+        
+                     </div>
+                     </div>
+                    </oj-bind-if>
+                          
+                    <oj-bind-if test="[[selectedZone() == 'custom']]">
+                     <div class="oj-flex">
+                       
+                       </div>
+        
+                    </oj-bind-if>
+                    <oj-button on-oj-action="{{back}}"><--</oj-button>
+</div>
+

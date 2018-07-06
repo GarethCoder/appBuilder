@@ -1,0 +1,44 @@
+<oj-bind-if test="[[controls]]">
+
+    <div style="height:400px;overflow-y:scroll">
+  <oj-bind-for-each data="[[controls]]">
+    <template>
+  
+  
+  
+        <!-- FOR TEXT INPUTS -->
+        <oj-bind-if test="[[$current.data.type]] == 'txt'">
+          <oj-label data-bind="attr: {id: [[$current.data.key]]+'_label'}">
+            <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+          </oj-label>
+          <oj-input-text class="myInputs" style="min-width:100%" value="[[ holderObject[ $current.data.key ] ]]" data-bind="attr:{id: [[$current.data.key]]}"></oj-input-text>
+          <br>
+        </oj-bind-if>
+  
+        <!-- FOR CHECKBOX INPUTS -->
+        <oj-bind-if test="[[$current.data.type]] == 'chk'">
+          <oj-label data-bind="attr: {id: [[$current.data.key]]+'_label'}" class="oj-label-inline">
+            <oj-bind-text value="[[$current.data.label]]"></oj-bind-text>
+          </oj-label>
+          <oj-checkboxset labelled-by="[[$current.data.key]]+'_label'" data-bind="attr:{id: [[$current.data.key]]}">
+            <oj-option value="on"></oj-option>
+          </oj-checkboxset>
+          <br>
+        </oj-bind-if>
+  
+        <!-- FOR RADIO INPUTS -->
+        <oj-bind-if test="[[$current.data.type]] == 'rad'">
+          <p>Radio Buttons Not Implemented</p>
+        </oj-bind-if>
+        <!-- FOR COMBO SELECTS -->
+        <oj-bind-if test="[[$current.data.type]] == 'SEL'">
+            <p>Select Boxs Not Implemented</p>
+        </oj-bind-if>
+  
+  
+    </template>
+  </oj-bind-for-each>
+  </div>
+    <oj-button style="min-width:100%; position: relative; top: 35px;" on-oj-action="{{action}}">Save</oj-button>
+
+  </oj-bind-if>

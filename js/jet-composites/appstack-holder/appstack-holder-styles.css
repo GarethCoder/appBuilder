@@ -1,0 +1,8 @@
+appstack-holder:not(.oj-complete){
+  visibility: hidden;
+}
+
+appstack-holder{
+	min-height: 50px;
+	width: 50px;
+}

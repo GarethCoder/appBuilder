@@ -1,0 +1,171 @@
+<oj-bind-if test="[[appLoaded]]">
+
+  <oj-bind-if test="[[config]]">
+
+    <div style="margin-bottom:10px;padding:10px">
+
+      <h4>
+        <oj-bind-text value="[[config().appName]]"></oj-bind-text>
+      </h4>
+
+
+      <oj-bind-if test="[[config().appType == 'query']]">
+        <oj-bind-if test="[[config().queryType == 'table']]">
+          <p>
+            <oj-bind-text value="{{loadingMsg}}"></oj-bind-text>
+          </p>
+        </oj-bind-if>
+
+        <div style="height:300px;overflow-y:scroll; overflow-x: hidden;">
+          <oj-bind-if test="[[dataprovider]]">
+            <data-grid rowset="[[dataprovider]]"></data-grid>
+          </oj-bind-if>
+          
+        </div>
+        <!-- <oj-bind-if test="[[dataprovider]]">
+          <div style="height:300px;overflow-y:scroll; overflow-x: hidden;">
+            <oj-bind-if test="[[gridEdit() == false ]]">
+              <oj-table id='exportTable' data='[[dataprovider]]' columns='{{config().headerCols}}' style='width: 100%;'>
+              </oj-table>
+            </oj-bind-if>
+
+
+            <oj-bind-if test="[[gridEdit() == true ]]">
+              <table class="oj-table" style="width:100%">
+                <oj-bind-for-each data="[[rawData]]" as="onerow">
+                  <template>
+                    <tr>
+                      <oj-bind-for-each data="[[onerow.data]]" as="oneinput">
+                        <template>
+                          <td>
+                            <input type="text"></input>
+                          </td>
+                        </template>
+                      </oj-bind-for-each>
+                    </tr>
+                  </template>
+                </oj-bind-for-each>
+              </table>
+
+
+            </oj-bind-if>
+
+            <oj-button on-oj-action="{{exportToExcel}}" style="min-width:100%;margin:10px">Export</oj-button>
+            <oj-button on-oj-action="{{toggleGridEditable}}" style="min-width:100%;margin:10px">Edit</oj-button>
+
+          </div>
+
+        </oj-bind-if> -->
+
+
+
+
+        <oj-bind-if test="[[config().queryType == 'form']]">
+          <div id='chart-container'>
+            <oj-chart id="pieChart" type="pie" series="{{pieSeriesValue}}" animation-on-display="auto" animation-on-data-change="auto"
+              style-defaults.three-d-effect="off" hover-behavior="dim" style="max-width:100%;width:100%;min-height:150px;">
+            </oj-chart>
+            <!-- 2D/3D toggle button
+          <demo-chart-three-d-effect-control id="threeDControl" three-d-effect="{{threeDValue}}" aria-controls="pieChart">
+          </demo-chart-three-d-effect-control> -->
+          </div>
+        </oj-bind-if>
+
+      </oj-bind-if>
+
+
+      <oj-bind-if test="[[config().appType == 'transact']]">
+        <oj-bind-if test="[[config().queryType == 'orch']]">
+          <oj-bind-if test="[[inputType() == 'form']]">
+            <oj-bind-for-each data="[[config().orcInputs]]" as="input">
+              <template>
+                <oj-label data-bind="attr: {id: [[input.data.name]]+'_label'}">
+                  <oj-bind-text value="[[$current.data.name]]"></oj-bind-text>
+                </oj-label>
+                <oj-input-text class="myInputs" style="min-width:100%" data-bind="attr:{id: [[$current.data.name]]}"></oj-input-text>
+
+              </template>
+            </oj-bind-for-each>
+
+            <oj-button style="min-width:100%" data-bind="visible: appLoaded" on-oj-action="[[saveOrcData]]">Save</oj-button>
+
+          </oj-bind-if>
+          <oj-bind-if test="[[inputType() == 'drop']]">
+            <xml-json callback="{{getDropData}}"></xml-json>
+
+          </oj-bind-if>
+
+
+        </oj-bind-if>
+        <oj-bind-if test="[[config().queryType == 'form']]">
+          <div style="margin-bottom:20px">
+
+
+
+            <oj-bind-if test="[[config().inputType == 'form']]">
+              <!-- <oj-button on-oj-action="{{changeToDropMode}}" style="min-width:100%">Make Drop</oj-button> -->
+
+              <form-holder callback="{{saveData}}" controls="[[config().valuesSelected]]"></form-holder>
+            </oj-bind-if>
+            <oj-bind-if test="[[config().inputType == 'drop']]">
+              <!-- <oj-button on-oj-action="{{changeToFormMode}}" style="min-width:100%">Make Form</oj-button> -->
+              <oj-button on-oj-action="{{makeTemplate}}">Template</oj-button>
+              <xml-json callback="[[getDropData]]"></xml-json>
+            </oj-bind-if>
+
+
+          </div>
+        </oj-bind-if>
+
+        <oj-bind-if test="[[config().queryType == 'service']]">
+          <div style="margin-bottom:20px">
+            <oj-bind-if test="[[inputType() == 'drop']]">
+              <!-- <oj-button on-oj-action="[[changeToFormMode]]" style="min-width:100%">Make Form</oj-button> -->
+            </oj-bind-if>
+            <oj-bind-if test="[[inputType() == 'form']]">
+              <!-- <oj-button on-oj-action="[[changeToDropMode]]" style="min-width:100%">Make Drop</oj-button> -->
+            </oj-bind-if>
+          </div>
+          <oj-bind-if test="[[inputType() == 'form']]">
+            <div class="oj-panel" style="margin-bottom:20px">
+              <oj-bind-for-each data="[[config().serviceInfo]]">
+                <template>
+
+                  <oj-bind-for-each data="{{$current.data.inputs}}" as="oneinput">
+                    <template>
+                      <oj-label data-bind="attr: {id: [[oneinput.data]]+'_label'}">
+                        <oj-bind-text value="[[oneinput.data]]"></oj-bind-text>
+                      </oj-label>
+                      <oj-input-text class="myOrcInputs" style="min-width:100%" data-bind="attr:{id: [[oneinput.data]]}"></oj-input-text>
+                    </template>
+                  </oj-bind-for-each>
+
+                </template>
+              </oj-bind-for-each>
+              <oj-bind-if test="[[config().queryType == 'service']]">
+                <div style="margin-bottom:20px">
+                  <oj-button style="min-width:50%;" data-bind="visible: appLoaded" on-oj-action="[[saveServiceData]]">Save</oj-button>
+                </div>
+              </oj-bind-if>
+
+            </div>
+          </oj-bind-if>
+          <oj-bind-if test="[[inputType() == 'drop']]">
+            <xml-json callback="{{getDropData}}"></xml-json>
+          </oj-bind-if>
+
+
+        </oj-bind-if>
+      </oj-bind-if>
+
+
+    </div>
+  </oj-bind-if>
+
+
+
+
+
+
+
+</oj-bind-if>

@@ -1,0 +1,317 @@
+<div class="oj-hybrid-padding">
+
+<div class="oj-flex">
+  <div class="oj-flex-item oj-lg-2">
+
+  </div>
+  <div class="oj-flex-item oj-lg-8 oj-panel">
+    
+    <oj-bind-if test="[[connected]]">
+
+      
+      <!-- ELEMENTS THAT ALWAYS SHOW -->
+      <div style="text-align:center">
+        <img src="eeZE1-blue-logo.svg" style="margin-bottom:20px; max-width:425px" />
+        <p>The eeZE1 Intellegent AppBuilder Bot will walk you through the steps to create and save your own E1 mobile app using the AIS form, data and orchestration services.</p>
+        
+         <hr>
+        <h1 style="margin-bottom:20px; text-align:center;">Start Building!</h1>
+        
+        </div>
+       
+        
+        <!-- HEADING ELEMENTS -->
+        <oj-bind-if test="configStep() < 7">
+          <oj-panel>
+            <div id="train-container" style="margin-bottom:25px">
+              <oj-train id="train" class="oj-train-stretch" style="max-width:400px;min-width:240px;margin-left:auto;margin-right:auto;"
+                selected-step="{{selectedStep}}" steps="[[stepArray]]">
+              </oj-train>
+              <h3 style="text-align:center; margin: 25px 0 15px 0;">Step
+             	<oj-bind-text value="{{selectedLabel}}"></oj-bind-text>
+          	  </h3>
+              <div style="padding: 15px; margin: 25px -15px 0px -15px; background-color:#f7f7f7; text-align:center;">
+              <h2>What type of app would you like to configure?</h2>
+              <img src="eeZE1-splash.svg" style="max-width:375px; text-align:center; padding-top:15px;" />  
+              </div>
+        </oj-bind-if>
+    
+    
+        <!-- STEPS # HEADING -->
+        <div class="oj-flex-item">
+    
+        </div>
+        <!-- SET APPTYPE -->
+        
+        <div style="text-align: center; padding: 15px 0 0px 0;">
+        <oj-bind-if test="configStep() == 1">
+
+          
+
+          <div class="oij-flex-item">
+            <oj-radioset id="radiosetAppType" value="{{appType}}">
+              <oj-option id="query" value="query">Query - Read only E1 forms and data tables</oj-option>
+              <oj-option id="transact" value="transact">Transaction - Read / Write Values to E1 forms and Orchestrations</oj-option>
+            </oj-radioset>
+          </div>
+        </oj-bind-if>
+
+
+        <!-- SET QUERY TYPE -->
+        <oj-bind-if test="configStep() == 2">
+    
+          <div class="oj-flex-item">
+    
+            <p>What type of app would you like to configure?</p>
+          </div>
+          <oj-bind-if test="appType() == 'query'">
+            <div class="oij-flex-item">
+              <oj-radioset id="radiosetAppType" labelled-by="mainlabelid" value="{{queryType}}">
+                <oj-option id="e1formselect" value="form">Form - E1 web form app</oj-option>
+                <oj-option id="e1tableselect" value="table">Table - Browser data from E1 table</oj-option>
+              </oj-radioset>
+            </div>
+          </oj-bind-if>
+          <oj-bind-if test="appType() == 'transact'">
+            <div class="oij-flex-item">
+              <oj-radioset id="radiosetAppType" labelled-by="mainlabelid" value="{{queryType}}">
+                <oj-option id="form" value="form">Form - Add and Update E1 web forms</oj-option>
+                <oj-option id="orch" value="orch">Orchestration - Send transactions to E1 Orchestration</oj-option>
+                <oj-option id="service" value="service">Service Request - Send transactions to E1 using AppStack services</oj-option>
+    
+              </oj-radioset>
+            </div>
+          </oj-bind-if>
+    
+        </oj-bind-if>
+
+        <!-- SET E1 TARGET -->
+        <oj-bind-if test="configStep() == 3">
+          <oj-bind-if test="appType() == 'query'">
+            <div class="oij-flex-item">
+              <oj-bind-if test="queryType() == 'form'">
+                <p>What E1 form would you like to configure within your app?</p>
+                <oj-combobox-one id="combobox" value="{{e1Target}}" style="max-width:100%">
+                  <oj-option value="">Select E1 Form</oj-option>
+                  <oj-option value="P4101_W4101A">W4101A - Item Master Additions</oj-option>
+                  <oj-option value="P01012_W01012A">W01012A - Address Book Additions</oj-option>
+                  <oj-option value="P90CA070_W90CA070C">W90CA070C - CRM Search for Customers</oj-option>
+                </oj-combobox-one>
+            </div>
+            <oj-bind-if test="queryType() == 'table'">
+              <div class="oj-flex-item">
+                <p>What E1 table would you like to configure within your app?</p>
+                <oj-combobox-one id="combobox" value="{{e1Target}}" style="max-width:100%">
+                  <oj-option value="">Select E1 Table</oj-option>
+                  <oj-option value="F4211">F4211 - Sales Order Detail table</oj-option>
+                  <oj-option value="F0911">F0911 - Account Ledger table</oj-option>
+                  <oj-option value="F41021">F41021 - Item Location Table</oj-option>
+                  <oj-option value="F4111">F4111 - Item Ledger Table</oj-option>
+                  <oj-option value="F4101">F4101 - Item Master table</oj-option>
+                  <oj-option value="F4311">F4311 - Purchase Order table</oj-option>
+                  <oj-option value="F0101">F0101 - Address Book table</oj-option>
+                  <oj-option value="F989998">F989998 - Serialized Objects table 1</oj-option>
+                  <oj-option value="F989999">F989999 - Serialized Objects table 2</oj-option>
+                  <oj-option value="F00950">F00950 - Security table</oj-option>
+                  <oj-option value="F0092">F0092 - User / Group relationship table</oj-option>
+                </oj-combobox-one>
+              </div>
+            </oj-bind-if>
+    
+    
+    
+    
+    
+            </oj-bind-if>
+    
+            <oj-bind-if test="appType() == 'transact'">
+              <div class="oij-flex-item">
+                <oj-bind-if test="queryType() == 'service'">
+                  <div class="oj-flex-item">
+                    <xml-json callback="{{processObject}}"></xml-json>
+                  
+                  </div>
+                </oj-bind-if>
+                <oj-bind-if test="queryType() == 'form'">
+                  <p>What E1 form would you like to configure within your app?</p>
+                  <oj-combobox-one id="combobox" placeholder="Select E1 Form" value="{{e1Target}}" style="max-width:100%">
+    
+                    <oj-option value="P41280_W41280B">W41280B - Lot Avaiability Inquiry</oj-option>
+                    <oj-option value="P4101_W4101A">W4101A - Item Master Additions</oj-option>
+                    <oj-option value="P41026_W41026D">W41026D - Item / Branch Additional System Info</oj-option>
+                    <oj-option value="P01012_W01012A">W01012A - Address Book Additions</oj-option>
+                    <oj-option value="P40163_W40163A">W40163A - Item Notes</oj-option>
+                    <oj-option value="P4210_W4210G">W4210G - Sales Order Header Entry</oj-option>
+                  </oj-combobox-one>
+                </oj-bind-if>
+                <oj-bind-if test="queryType() == 'orch'">
+                  <p>Select the Orchestration you would like to use in your app</p>
+                  <oj-bind-if test="orcs().length > 0">
+                    <oj-select-one id="orcscombo" options="[[orcs]]" placeholder="Select Orchestration" value="{{e1Target}}" style="max-width:100%">
+                    </oj-select-one>
+                  </oj-bind-if>
+                  <oj-bind-if test="orcs().length == 0">
+                    <p>
+                      <oj-bind-text value="Loading E1 Orchestrations list..."></oj-bind-text>
+                    </p>
+                  </oj-bind-if>
+                </oj-bind-if>
+    
+              </div>
+            </oj-bind-if>
+          </oj-bind-if>
+
+
+          <!-- SELECT APP COLS OR CONTROLS -->
+          <oj-bind-if test="configStep() == 4">
+            <oj-bind-if test="queryType() == 'form' && appType() == 'query'">
+            
+              <div class="oj-panel">
+                <div class="oj-flex">
+                    <div class="oj-flex-item">
+                        <oj-charts-cmp data='[[chartData]]' chart-type='bar' bar-groups='{{barGroups}}'></oj-charts-cmp>
+
+                      </div>
+                </div>
+                
+                <div class="oj-flex-item">
+                  
+                        <oj-select-one id="colselect" options="[[gridColumns]]" placeholder="Select Col value" value="{{targetCol}}" style="max-width:100%">
+                        </oj-select-one>
+                  
+                  </div>
+             </div>
+
+            </oj-bind-if>
+            <oj-bind-if test="queryType() == 'table'">
+              <div class="oj-flex-item">
+    
+                <p>
+                  <oj-bind-text value="[[setUpMessage]]"></oj-bind-text>
+                </p>
+      
+                <oj-bind-for-each data="[[tableValuesSelected]]">
+                  <template>
+                    <p>
+                      <oj-bind-text value="{{$current.data.value}}"></oj-bind-text> -
+                      <oj-bind-text value="{{$current.data.label}}"></oj-bind-text>
+                    </p>
+                  </template>
+                </oj-bind-for-each>
+      
+  
+                <oj-bind-if test="[[tableInfo]]">
+      
+                  <p>Select values for your app</p>
+      
+                  <oj-select-many id="select" value="{{tableValuesSelected}}" style="width:100%">
+      
+                    <oj-bind-for-each data="[[tableInfo]]">
+                      <template>
+      
+                        <oj-option value="{{$current.data}}">
+                          <oj-bind-text value="{{$current.data.label}}"></oj-bind-text>
+                        </oj-option>
+      
+                      </template>
+                    </oj-bind-for-each>
+                  </oj-select-many>
+      
+      
+                </oj-bind-if>
+  
+              </div>
+            </oj-bind-if>
+            <oj-bind-if test="queryType() == 'form' && appType() == 'transact'">
+              <p>Choose Form Controls for your app: </p>
+ 
+             </oj-bind-if>
+
+
+          </oj-bind-if>
+          <!-- CONFIRM -->
+          <oj-bind-if test="configStep() == 5">
+            <h4>
+              <oj-bind-text value="{{setUpMessage}}"></oj-bind-text>
+            </h4>
+          </oj-bind-if>
+          <!-- SET APPNAME -->
+          <oj-bind-if test="configStep() == 6">
+            
+            <input type="text" data-bind="value: appName" placeholder="App Name"></input>
+       
+          </oj-bind-if>
+    
+    
+          <!-- BUTTONS -->
+          <div class="oj-flex-item">
+           
+            <hr>
+    
+            <div class="oj-flex" style="margin-left:42%;">
+    
+              <div style="text-align:right">
+                <oj-bind-if test="configStep() > 1 && configStep() < 6">
+                  <oj-button class="resetButton" on-oj-action='[[backConfig]]'>Reset</oj-button>
+                </oj-bind-if>
+              </div>
+              <oj-bind-if test="configStep() < 6">
+                <div style="text-align:right">
+                  <oj-button on-oj-action='[[nextConfig]]'>Next Step</oj-button>
+                </div>
+              </oj-bind-if>
+              <oj-bind-if test="configStep() == 6">
+                <div style="text-align:right">
+                  <oj-button on-oj-action='[[saveApp]]'>Save App</oj-button>
+                </div>
+              </oj-bind-if>
+            </div>
+    
+    
+          </div>
+        
+        </oj-bind-if>
+        
+      
+  
+    
+        <!-- DATA PREVIEW TABLE -->
+        <oj-bind-if test="[[dataPreview]]">
+          <hr>
+          <oj-checkboxset value="{{gridMode}}">
+              <oj-option value="edit">Editable</oj-option>
+            </oj-checkboxset>
+          <div class="oj-panel" style="height:300px;overflow-y:scroll;margin-top:10px">
+          <data-grid rowset="[[e1Data]]"></data-grid>
+    
+            <!-- <oj-table id='table' data='[[dataprovider]]' columns='{{headerCols}}' style='width: 100%;'>
+            </oj-table> -->
+          </div>
+        </oj-bind-if>
+        <!-- CONTROLS PREVIEW  -->
+        <oj-bind-if test="[[previewControls]]">
+            <oj-checkboxset value="{{inputType}}">
+                <oj-option value="drop">Make A Drop</oj-option>
+              </oj-checkboxset>
+          <div class="oj-panel">
+              <form-builder callback="{{setFormControls}}" controls='[[previewControls]]'></form-builder>
+
+          </div>
+        </oj-bind-if>
+    
+        <!-- SERVICE STEPS -->
+        <oj-bind-if test="[[appStackProcess]]">
+            <div class="oj-panel">
+          <appstack-holder steps="[[appStackProcess]]"></appstack-holder>
+        </div>
+        </oj-bind-if>
+      </oj-bind-if>
+  </div>
+  <div class="oj-flex-item oj-lg-2">
+    
+  </div>
+</div>
+
+  
+    </div>
+  

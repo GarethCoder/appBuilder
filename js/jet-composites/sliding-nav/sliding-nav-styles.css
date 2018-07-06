@@ -1,0 +1,8 @@
+sliding-nav:not(.oj-complete){
+  visibility: hidden;
+}
+
+sliding-nav{
+	min-height: 50px;
+	width: 50px;
+}

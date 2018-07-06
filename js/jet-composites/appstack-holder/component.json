@@ -1,0 +1,21 @@
+{
+  "name": "appstack-holder",
+  "displayName": "appstack-holder",
+  "description": "create UI from appstack steps",
+  "version": "1.0.0",
+  "jetVersion": "5.0.0",
+  "properties": {
+    "steps":{
+      "type":"observable"
+    }
+  },
+  "methods": {
+
+  }, 
+  "events": {
+
+  }, 
+  "slots": {
+
+  }
+}

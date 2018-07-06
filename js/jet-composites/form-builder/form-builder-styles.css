@@ -1,0 +1,8 @@
+form-builder:not(.oj-complete){
+  visibility: hidden;
+}
+
+form-builder{
+	min-height: 50px;
+	width: 50px;
+}

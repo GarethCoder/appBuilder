@@ -1,0 +1,8 @@
+form-holder:not(.oj-complete){
+  visibility: hidden;
+}
+
+form-holder{
+	min-height: 50px;
+	width: 50px;
+}

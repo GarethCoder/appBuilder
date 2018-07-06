@@ -1,0 +1,186 @@
+<div class="oj-hybrid-padding">
+
+    <div class="oj-flex oj-flex-items-pad nav_holder">
+      <div class="oj-sm-12 oj-md-1 oj-lg-1 oj-flex-item nav_bg">
+          <div id="navlistcontainer">
+              <oj-navigation-list  aria-label="Choose a navigation item"
+                                   drill-mode="none" 
+                                   display="[[display]]" 
+                                   selection="{{selectedItem}}">
+                <ul >
+                  <li id="Layout">
+                    <a href="#">
+                      <span class="oj-navigationlist-item-icon demo-home-icon-24 demo-icon-font-24">
+                      </span>
+                      Home
+                    </a>
+                  </li>
+                  <li id="apps">
+                    <a href="#">
+                      <span class="oj-navigationlist-item-icon
+                            demo-education-icon-24 demo-icon-font-24">
+                      </span>
+                      Apps
+                    </a>
+                  </li>
+                  <li id="builder">
+                    <a href="#" data-bind="click: goToZones">
+                      <span class="oj-navigationlist-item-icon
+                            demo-chart-icon-24 demo-icon-font-24">
+                      </span>
+                      Zones
+                    </a>
+                  </li>
+
+          
+                </ul>
+              </oj-navigation-list>
+            </div>
+      </div>
+      <div data-bind="visible: selectedItem() == 'apps'" class="oj-sm-12 oj-md-1 oj-lg-2 oj-flex-item sub_nav">
+        <!-- <div style="text-align:center">
+            <img src="eeZE1.svg" style="margin-bottom:20px; max-width:200px;" />
+        </div> --><br><br><br><br>
+        <oj-button on-oj-action='[[makeApp]]' style="min-width:100%;">Build New App</oj-button>
+        <oj-bind-if test="[[savedApps]]">
+            <h1 style="margin-bottom:20px; text-align:center; color:#ffffff;">myApps</h1>
+          <oj-bind-for-each data="[[savedApps]]">
+            <template>
+                <div class="myAppsHook dragger" draggable="true" data-bind="attr: {id:[[$current.data.appID]]}">
+  
+                <div class="oj-panel" style="margin-top:5px;height:70px;border-radius:7px">
+                    <p><oj-bind-text value="{{$current.data.appName}}"></oj-bind-text></p><p style="font-size:10px">type: <oj-bind-text value="{{$current.data.appType}}"></oj-bind-text> - E1 Interface: <oj-bind-text value="{{$current.data.queryType}}"></oj-bind-text></p>
+                </div>
+                </div>
+            </template>
+          </oj-bind-for-each>
+   
+          
+      
+        </oj-bind-if>
+
+      </div>
+      
+      <div class="oj-sm-12 oj-md-10 oj-lg-9 oj-flex-item" style="margin-top:0px;">
+      <div style="float:left;"><h1 style="margin-bottom:20px; text-align:left; color:#fff;">zoneCanvas</h1></div>
+          <div style="float:right;"><oj-toolbar id="myToolbar">
+              <oj-select-one id="canvascombo" options="[[savedZones]]" placeholder="Select Zone to Load" value="{{selectedZone}}" style="min-width:20%">
+                </oj-select-one>
+                
+             <oj-bind-for-each data="[[canvasButtons()]]">
+              <template>
+                <oj-button chrome="full" on-oj-action="{{$current.data.callback}}">
+                  <oj-bind-text value="{{$current.data.action}}"></oj-bind-text>
+                </oj-button>
+              </template>
+             </oj-bind-for-each>
+             
+          </oj-toolbar>
+          </div>
+        <div class="oj-panel" style="height:100%; clear:both;">
+      <oj-bind-if test="[[selectedZone() == 'default']]">
+         <div class="oj-flex">
+           <div class="oj-flex-item oj-lg-4">
+             <div id="ah1" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper " data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                
+              <app-holder id="ah1" config="[[currentLoadedApp1]]"></app-holder>
+
+             </div>
+             <div id="ah4" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                <app-holder  config="[[currentLoadedApp4]]"></app-holder>
+             </div>
+           </div>
+           <div class="oj-flex-item oj-lg-4">
+              <div  id="ah2" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+              <app-holder config="[[currentLoadedApp2]]"></app-holder>
+           </div>
+           <div  id="ah5" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+              <app-holder config="[[currentLoadedApp5]]"></app-holder>
+
+           </div>
+          </div>
+           <div class="oj-flex-item oj-lg-4">
+              <div  id="ah3" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper" data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+              <app-holder config="[[currentLoadedApp3]]"></app-holder>
+           </div>
+           <div id="ah6" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3"  class="dropper" data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+              <app-holder config="[[currentLoadedApp6]]"></app-holder>
+
+           </div>
+          </div>
+         </div>
+        </oj-bind-if>
+              
+        <oj-bind-if test="[[selectedZone() == 'mobile']]">
+            <div class="oj-flex">
+              <div class="oj-flex-item oj-lg-12">
+                <div id="ah1" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper " data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                   
+                 <app-holder id="ah1" config="{{currentLoadedApp1}}"></app-holder>
+   
+                </div>
+                <div id="ah2" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                   <app-holder  config="{{currentLoadedApp2}}"></app-holder>
+                </div>
+                <div id="ah3" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                    <app-holder  config="{{currentLoadedApp3}}"></app-holder>
+                 </div>
+                 <div id="ah4" style="padding:5px;margin-top:15px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                    <app-holder  config="{{currentLoadedApp4}}"></app-holder>
+                 </div>
+
+              </div>
+
+
+            </div>
+           </oj-bind-if>
+          
+           <oj-bind-if test="[[selectedZone() == 'dash']]">
+              <div class="oj-flex">
+                <div class="oj-flex-item oj-lg-12">
+                  <div id="ah1" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper " data-bind="event: {dragover: dragOverHandler, dragover: dragOverHandler,drop: dropHandler}">
+                     
+                   <app-holder id="ah1" config="{{currentLoadedApp1}}"></app-holder>
+     
+                  </div>
+                  
+                </div>
+                </div>
+                <div class="oj-flex">
+                <div class="oj-flex-item oj-lg-4">
+                   <div  id="ah2" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper"  data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                   <app-holder config="{{currentLoadedApp2}}"></app-holder>
+                </div>
+               </div>
+                <div class="oj-flex-item oj-lg-4">
+                   <div  id="ah3" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper" data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                   <app-holder config="{{currentLoadedApp3}}"></app-holder>
+                </div>
+
+               </div>
+               <div class="oj-flex-item oj-lg-4">
+                  <div  id="ah4" style="padding:5px;min-height:250px;border:1px dashed #D3D3D3" class="dropper" data-bind="event: {dragleave: dragLeaveHandler, dragover: dragOverHandler, drop: dropHandler}">
+                  <app-holder config="{{currentLoadedApp4}}"></app-holder>
+               </div>
+
+              </div>
+              </div>
+             </oj-bind-if>
+                   
+             <oj-bind-if test="[[selectedZone() == 'custom']]">
+              <div class="oj-flex">
+                
+                </div>
+
+             </oj-bind-if>
+                   
+        </div>
+      </div>
+    </div>
+      <div>
+    
+    
+
+      </div>
+    </div>
+    

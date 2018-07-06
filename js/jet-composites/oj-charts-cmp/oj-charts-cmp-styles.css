@@ -1,0 +1,8 @@
+oj-charts-cmp:not(.oj-complete){
+  visibility: hidden;
+}
+
+oj-charts-cmp{
+	min-height: 50px;
+	width: 50px;
+}

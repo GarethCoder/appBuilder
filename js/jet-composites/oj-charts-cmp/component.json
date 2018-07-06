@@ -1,0 +1,27 @@
+{
+  "name": "oj-charts-cmp",
+  "displayName": "oj-charts-cmp",
+  "description": "Describe your component here",
+  "version": "1.0.0",
+  "jetVersion": "5.0.0",
+  "properties": {
+    "data": {
+      "type": "array"
+    },
+    "barGroups": {
+      "type": "array"
+    },
+    "chartType": {
+      "type": "string"
+    }
+  },
+  "methods": {
+
+  },
+  "events": {
+
+  },
+  "slots": {
+
+  }
+}

@@ -1,0 +1,24 @@
+<h1>Appstack Steps</h1>
+<div class="oj-panel">
+    <oj-bind-for-each data="[[appstacksteps]]">
+        <template>
+      <h4>Step - <oj-bind-text value="{{$current.data.formName}}"></oj-bind-text></h4>
+      <p>Form Inputs and Actions</p>
+      <ul style="list-style:none">
+          <oj-bind-for-each data="[[$current.data.formActions]]" as="action">
+            <template>
+              <oj-bind-if test="{{action.data.inputValue}}">
+                  <li><oj-bind-text value="{{action.data.inputValue}}"></oj-bind-text> - AIS ID <oj-bind-text value="{{action.data.controlID}}"></oj-bind-text></li>
+      
+              </oj-bind-if>
+              <oj-bind-if test="{{!action.data.inputValue}}">
+                  <li><oj-bind-text value="{{action.data.command}}"></oj-bind-text> - AIS ID <oj-bind-text value="{{action.data.controlID}}"></oj-bind-text></li>
+              </oj-bind-if>
+      
+            </template>
+          </oj-bind-for-each>
+        </ul>
+        </template>
+      </oj-bind-for-each>
+      
+</div>
